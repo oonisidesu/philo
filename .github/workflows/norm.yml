@@ -1,5 +1,5 @@
 name: norm_check
-on: [push, pull_request, workflow_dispatch]
+on: [pull_request]
 jobs:
   build:
     runs-on: macos-latest
@@ -8,7 +8,6 @@ jobs:
         uses: actions/checkout@v2
       - name: Install Norminette.
         run: |
-          python3 -m pip install --upgrade pip setuptools
           python3 -m pip install norminette==3.3.51
       - name: Run Norminette.
         run: norminette
