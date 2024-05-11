@@ -52,7 +52,7 @@ re: fclean all
 
 # test
 test: 
-	cd test/unit/build && cmake ../../../
+	cd test/unit/build && cmake ../ && make && ctest -R . --verbose
 
 # Phony targets
 .PHONY: all clean fclean re test

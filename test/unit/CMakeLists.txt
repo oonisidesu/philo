@@ -15,14 +15,20 @@ set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 
 # Get all test files in the 'unit' directory
-file(GLOB TEST_SOURCES "test/unit/*.cpp")
+file(GLOB TEST_SOURCES "src/*.cpp")
+
+# Add the source file where get_current_time(timeval*) is defined
+list(APPEND TEST_SOURCES "../../src/utils.c") # C言語のソースファイルを追加
 
 # Add test executable target
 add_executable(runUnitTests ${TEST_SOURCES})
+
+# Specify include directories for target
+target_include_directories(runUnitTests PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../includes)
 
 # Link with GoogleTest
 target_link_libraries(runUnitTests gtest gtest_main)
 
 # Add test
 enable_testing()
-# add_test(NAME MyTest COMMAND runUnitTests)
+add_test(NAME unit_tests COMMAND runUnitTests)
