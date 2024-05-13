@@ -19,6 +19,8 @@ file(GLOB TEST_SOURCES "src/*.cpp")
 
 # Add the source file where get_current_time(timeval*) is defined
 list(APPEND TEST_SOURCES "../../src/utils.c") # C言語のソースファイルを追加
+list(APPEND TEST_SOURCES "../../src/philosopher.c") # C言語のソースファイルを追加
+list(APPEND TEST_SOURCES "../../src/ft_atoi.c") # C言語のソースファイルを追加
 
 # Add test executable target
 add_executable(runUnitTests ${TEST_SOURCES})
