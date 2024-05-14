@@ -1,3 +1,5 @@
 メモ
 *.o
 philo
+test/unit/build/
+test/unit/log/
