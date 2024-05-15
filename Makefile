@@ -6,7 +6,7 @@
 #    By: ootsuboyoshiyuki <ootsuboyoshiyuki@stud    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/14 15:06:08 by ootsuboyosh       #+#    #+#              #
-#    Updated: 2024/05/15 18:15:58 by ootsuboyosh      ###   ########.fr        #
+#    Updated: 2024/05/15 18:27:46 by ootsuboyosh      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,6 +40,7 @@ re: fclean all
 
 u_test: 
 	# unit tests
+	mkdir -p test/unit/build
 	cd test/unit/build && cmake ../ && make && ctest -R . --verbose
 
 i_output:
