@@ -25,6 +25,7 @@ jobs:
   
       - name: Run Norminette
         run: |
+          source venv/bin/activate
           make norm
       
       - name: unit tests
