@@ -6,7 +6,7 @@
 /*   By: ootsuboyoshiyuki <ootsuboyoshiyuki@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 15:06:52 by ootsuboyosh       #+#    #+#             */
-/*   Updated: 2024/05/14 17:36:02 by ootsuboyosh      ###   ########.fr       */
+/*   Updated: 2024/05/15 14:47:15 by ootsuboyosh      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,6 @@ void				eat(t_philosopher *philosopher, t_table *table);
 void				sleep_philosopher(t_philosopher *philosopher,
 						t_table *table);
 void				*philosopher_thread(void *arg);
+int					ft_atoi(const char *str);
 
 #endif
