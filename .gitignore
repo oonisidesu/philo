@@ -1,3 +1,5 @@
 メモ
 *.o
 philo
+obj/
+test/unit/build/
