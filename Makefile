@@ -6,7 +6,7 @@
 #    By: ootsuboyoshiyuki <ootsuboyoshiyuki@stud    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/14 15:06:08 by ootsuboyosh       #+#    #+#              #
-#    Updated: 2024/05/15 16:36:18 by ootsuboyosh      ###   ########.fr        #
+#    Updated: 2024/05/15 18:15:58 by ootsuboyosh      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,4 +47,7 @@ i_output:
 	chmod +x test/integration/run_integration_tests.sh
 	test/integration/run_integration_tests.sh
 
-.PHONY: all clean fclean re u_test i_output
+norm:
+	norminette srcs/*.c includes/*.h
+
+.PHONY: all clean fclean re u_test i_output norm
