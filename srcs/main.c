@@ -6,7 +6,7 @@
 /*   By: ootsuboyoshiyuki <ootsuboyoshiyuki@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 16:00:29 by ootsuboyosh       #+#    #+#             */
-/*   Updated: 2024/05/14 17:42:36 by ootsuboyosh      ###   ########.fr       */
+/*   Updated: 2024/05/15 14:45:59 by ootsuboyosh      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ static int	init_table(t_table *table, int argc, char *argv[])
 {
 	int	i;
 
-	table->number_of_philosophers = atoi(argv[1]);
-	table->time_to_die = atoi(argv[2]);
-	table->time_to_eat = atoi(argv[3]);
-	table->time_to_sleep = atoi(argv[4]);
+	table->number_of_philosophers = ft_atoi(argv[1]);
+	table->time_to_die = ft_atoi(argv[2]);
+	table->time_to_eat = ft_atoi(argv[3]);
+	table->time_to_sleep = ft_atoi(argv[4]);
 	if (argc == 6)
-		table->nm_of_t_each_philo_must_eat = atoi(argv[5]);
+		table->nm_of_t_each_philo_must_eat = ft_atoi(argv[5]);
 	else
 		table->nm_of_t_each_philo_must_eat = -1;
 	table->forks = malloc(sizeof(pthread_mutex_t)
