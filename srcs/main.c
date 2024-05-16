@@ -6,7 +6,7 @@
 /*   By: ootsuboyoshiyuki <ootsuboyoshiyuki@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 16:00:29 by ootsuboyosh       #+#    #+#             */
-/*   Updated: 2024/05/15 14:45:59 by ootsuboyosh      ###   ########.fr       */
+/*   Updated: 2024/05/15 19:32:43 by ootsuboyosh      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,20 +83,14 @@ static void	join_philosophers(t_table *table)
 	free(table->philosophers);
 }
 
-static int	check_args(int argc)
+static int	check_args(int argc, char *argv[])
 {
-	if (argc < 5 || argc > 6)
-	{
-		write(STDERR_FILENO, "Usage:", 6);
-		write(STDERR_FILENO, " philo", 6);
-		write(STDERR_FILENO, " [number_of_philosopher]", 24);
-		write(STDERR_FILENO, " [time_to_die]", 14);
-		write(STDERR_FILENO, " [time_to_eat]", 14);
-		write(STDERR_FILENO, " [time_to_sleep]", 16);
-		write(STDERR_FILENO, " [number_of_times_", 18);
-		write(STDERR_FILENO, "each_philosopher_must_eat]\n", 28);
+	if (check_args_num(argc))
 		return (1);
-	}
+	if (check_front_zero_next(argc, argv))
+		return (1);
+	if (check_int(argc, argv))
+		return (1);
 	return (0);
 }
 
@@ -104,7 +98,7 @@ int	main(int argc, char *argv[])
 {
 	t_table	table;
 
-	if (check_args(argc))
+	if (check_args(argc, argv))
 		return (1);
 	if (init_table(&table, argc, argv) != 0)
 		return (1);

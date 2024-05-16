@@ -6,7 +6,7 @@
 #    By: ootsuboyoshiyuki <ootsuboyoshiyuki@stud    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/14 15:06:08 by ootsuboyosh       #+#    #+#              #
-#    Updated: 2024/05/15 18:27:46 by ootsuboyosh      ###   ########.fr        #
+#    Updated: 2024/05/15 19:35:27 by ootsuboyosh      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME = philo
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
-SRCS = srcs/main.c srcs/philosopher.c srcs/utils.c srcs/ft_atoi.c
+SRCS = srcs/main.c srcs/philosopher.c srcs/utils.c srcs/ft_atoi.c srcs/check.c
 OBJS_DIR = obj
 OBJS = $(SRCS:srcs/%.c=$(OBJS_DIR)/%.o)
 

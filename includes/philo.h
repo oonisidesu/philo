@@ -6,7 +6,7 @@
 /*   By: ootsuboyoshiyuki <ootsuboyoshiyuki@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 15:06:52 by ootsuboyosh       #+#    #+#             */
-/*   Updated: 2024/05/15 14:47:15 by ootsuboyosh      ###   ########.fr       */
+/*   Updated: 2024/05/15 19:33:48 by ootsuboyosh      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,8 @@ void				sleep_philosopher(t_philosopher *philosopher,
 						t_table *table);
 void				*philosopher_thread(void *arg);
 int					ft_atoi(const char *str);
+int					check_args_num(int argc);
+int					check_front_zero_next(int argc, char *argv[]);
+int					check_int(int argc, char *argv[]);
 
 #endif
