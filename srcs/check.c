@@ -6,7 +6,7 @@
 /*   By: ootsuboyoshiyuki <ootsuboyoshiyuki@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 18:35:18 by ootsuboyosh       #+#    #+#             */
-/*   Updated: 2024/05/16 23:23:57 by ootsuboyosh      ###   ########.fr       */
+/*   Updated: 2024/05/17 12:47:37 by ootsuboyosh      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,11 @@ static long	extract_integer(char *s, long sign)
 		num = (*s++ - '0') + num * 10;
 	}
 	return (sign * num);
+}
+
+long	test_extract_integer(char *s, long sign)
+{
+	return (extract_integer(s, sign));
 }
 
 int	check_args_num(int argc)

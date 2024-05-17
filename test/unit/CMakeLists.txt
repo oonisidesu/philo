@@ -21,6 +21,7 @@ file(GLOB TEST_SOURCES "srcs/*.cpp")
 list(APPEND TEST_SOURCES "../../srcs/utils.c") # C言語のソースファイルを追加
 list(APPEND TEST_SOURCES "../../srcs/philosopher.c") # C言語のソースファイルを追加
 list(APPEND TEST_SOURCES "../../srcs/ft_atoi.c") # C言語のソースファイルを追加
+list(APPEND TEST_SOURCES "../../srcs/check.c") # C言語のソースファイルを追加
 
 # Add test executable target
 add_executable(runUnitTests ${TEST_SOURCES})
