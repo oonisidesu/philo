@@ -6,7 +6,7 @@
 /*   By: ootsuboyoshiyuki <ootsuboyoshiyuki@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 16:00:29 by ootsuboyosh       #+#    #+#             */
-/*   Updated: 2024/05/15 19:32:43 by ootsuboyosh      ###   ########.fr       */
+/*   Updated: 2024/05/18 17:49:07 by ootsuboyosh      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ static int	init_table(t_table *table, int argc, char *argv[])
 			* table->number_of_philosophers);
 	table->philosophers = malloc(sizeof(t_philosopher)
 			* table->number_of_philosophers);
+	table->simulation_ended = 0;
 	if (!table->forks || !table->philosophers)
 		return (1);
 	i = 0;
@@ -40,6 +41,7 @@ static int	init_table(t_table *table, int argc, char *argv[])
 			return (1);
 		i++;
 	}
+	pthread_mutex_init(&table->print_mutex, NULL);
 	return (0);
 }
 
@@ -103,6 +105,7 @@ int	main(int argc, char *argv[])
 	if (init_table(&table, argc, argv) != 0)
 		return (1);
 	init_philosophers(&table);
+	monitor_philosophers(&table);
 	join_philosophers(&table);
 	return (0);
 }

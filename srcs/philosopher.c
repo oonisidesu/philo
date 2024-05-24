@@ -5,37 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ootsuboyoshiyuki <ootsuboyoshiyuki@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/14 15:06:25 by ootsuboyosh       #+#    #+#             */
-/*   Updated: 2024/05/14 17:36:40 by ootsuboyosh      ###   ########.fr       */
+/*   Created: 2024/05/18 20:33:30 by ootsuboyosh       #+#    #+#             */
+/*   Updated: 2024/05/18 20:33:31 by ootsuboyosh      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 #include <stdio.h>
 #include <unistd.h>
-
-void	think(t_philosopher *philosopher)
-{
-	printf("%ld %d is thinking\n", get_current_time_ms(), philosopher->id);
-}
-
-void	eat(t_philosopher *philosopher, t_table *table)
-{
-	pthread_mutex_lock(philosopher->left_fork);
-	pthread_mutex_lock(philosopher->right_fork);
-	philosopher->last_meal_time = get_current_time_ms();
-	printf("%ld %d is eating\n", philosopher->last_meal_time, philosopher->id);
-	usleep(table->time_to_eat * 1000);
-	philosopher->meals_eaten++;
-	pthread_mutex_unlock(philosopher->right_fork);
-	pthread_mutex_unlock(philosopher->left_fork);
-}
-
-void	sleep_philosopher(t_philosopher *philosopher, t_table *table)
-{
-	printf("%ld %d is sleeping\n", get_current_time_ms(), philosopher->id);
-	usleep(table->time_to_sleep * 1000);
-}
 
 void	*philosopher_thread(void *arg)
 {
@@ -44,13 +21,47 @@ void	*philosopher_thread(void *arg)
 
 	philosopher = (t_philosopher *)arg;
 	table = philosopher->table;
-	while (1)
+	while (!table->simulation_ended)
 	{
 		think(philosopher);
 		eat(philosopher, table);
 		sleep_philosopher(philosopher, table);
-		if (philosopher->meals_eaten >= table->nm_of_t_each_philo_must_eat)
-			break ;
+		usleep(100); // 短い待機を追加して無限ループを防止
 	}
 	return (NULL);
+}
+
+void	monitor_philosophers(t_table *table)
+{
+	int		i;
+	long	current_time;
+	int		all_ate;
+
+	while (!table->simulation_ended)
+	{
+		i = 0;
+		all_ate = 1;
+		while (i < table->number_of_philosophers)
+		{
+			current_time = get_current_time_ms();
+			if (current_time
+				- table->philosophers[i].last_meal_time > table->time_to_die)
+			{
+				print_status(&table->philosophers[i], "died");
+				table->simulation_ended = 1;
+				break ;
+			}
+			if (table->nm_of_t_each_philo_must_eat != -1
+				&& table->philosophers[i].meals_eaten < table->nm_of_t_each_philo_must_eat)
+			{
+				all_ate = 0;
+			}
+			i++;
+		}
+		if (all_ate && table->nm_of_t_each_philo_must_eat != -1)
+		{
+			table->simulation_ended = 1;
+		}
+		usleep(1000); // モニタリングループの短い待機を追加して無限ループを防止
+	}
 }

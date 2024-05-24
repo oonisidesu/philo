@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ootsuboyoshiyuki <ootsuboyoshiyuki@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/14 15:06:52 by ootsuboyosh       #+#    #+#             */
-/*   Updated: 2024/05/15 19:33:48 by ootsuboyosh      ###   ########.fr       */
+/*   Created: 2024/05/18 17:28:13 by ootsuboyosh       #+#    #+#             */
+/*   Updated: 2024/05/18 17:28:14 by ootsuboyosh      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,10 @@
 # define PHILO_H
 
 # include <pthread.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <sys/time.h>
+# include <unistd.h>
 
 typedef struct s_philosopher
 {
@@ -34,6 +38,8 @@ typedef struct s_table
 	int				time_to_sleep;
 	int				nm_of_t_each_philo_must_eat;
 	pthread_mutex_t	*forks;
+	pthread_mutex_t	print_mutex;
+	int				simulation_ended;
 	t_philosopher	*philosophers;
 }					t_table;
 
@@ -43,6 +49,8 @@ void				eat(t_philosopher *philosopher, t_table *table);
 void				sleep_philosopher(t_philosopher *philosopher,
 						t_table *table);
 void				*philosopher_thread(void *arg);
+void				monitor_philosophers(t_table *table);
+void				print_status(t_philosopher *philosopher, char *status);
 int					ft_atoi(const char *str);
 int					check_args_num(int argc);
 int					check_front_zero_next(int argc, char *argv[]);
