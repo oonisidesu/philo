@@ -3,3 +3,4 @@
 philo
 obj/
 test/unit/build/
+test/integration/log

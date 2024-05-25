@@ -6,7 +6,7 @@
 #    By: ootsuboyoshiyuki <ootsuboyoshiyuki@stud    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/14 15:06:08 by ootsuboyosh       #+#    #+#              #
-#    Updated: 2024/05/15 14:41:57 by ootsuboyosh      ###   ########.fr        #
+#    Updated: 2024/05/25 16:36:24 by ootsuboyosh      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME = philo
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
-SRCS = srcs/main.c srcs/philosopher.c srcs/utils.c srcs/ft_atoi.c
+SRCS = srcs/main.c srcs/philo.c srcs/utils.c
 OBJS_DIR = obj
 OBJS = $(SRCS:srcs/%.c=$(OBJS_DIR)/%.o)
 
@@ -38,7 +38,8 @@ fclean: clean
 
 re: fclean all
 
-test: 
-	cd test/unit/build && cmake ../ && make && ctest -R . --verbose
+test: $(NAME)
+	chmod +x test/integration/test_philo.sh
+	./test/integration/test_philo.sh
 
 .PHONY: all clean fclean re test
