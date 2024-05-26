@@ -6,7 +6,7 @@
 #    By: ootsuboyoshiyuki <ootsuboyoshiyuki@stud    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/14 15:06:08 by ootsuboyosh       #+#    #+#              #
-#    Updated: 2024/05/25 16:36:24 by ootsuboyosh      ###   ########.fr        #
+#    Updated: 2024/05/26 18:18:26 by ootsuboyosh      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,14 @@ NAME = philo
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
-SRCS = srcs/main.c srcs/philo.c srcs/utils.c
+SRCS = srcs/main.c \
+       srcs/philo.c \
+       srcs/philo_utils.c \
+       srcs/philo_routine.c \
+	   srcs/philo_actions.c \
+       srcs/utils.c \
+       srcs/death.c \
+	   srcs/ft_atoll.c
 OBJS_DIR = obj
 OBJS = $(SRCS:srcs/%.c=$(OBJS_DIR)/%.o)
 
@@ -42,4 +49,7 @@ test: $(NAME)
 	chmod +x test/integration/test_philo.sh
 	./test/integration/test_philo.sh
 
-.PHONY: all clean fclean re test
+norm:
+	norminette srcs includes
+	
+.PHONY: all clean fclean re test norm

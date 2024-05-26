@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ootsuboyoshiyuki <ootsuboyoshiyuki@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/25 04:33:23 by ootsuboyosh       #+#    #+#             */
-/*   Updated: 2024/05/25 05:01:35 by ootsuboyosh      ###   ########.fr       */
+/*   Created: 2024/05/25 14:36:13 by ootsuboyosh       #+#    #+#             */
+/*   Updated: 2024/05/26 16:34:44 by ootsuboyosh      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,16 +44,29 @@ typedef struct s_philo
 	t_data			*data;
 }					t_philo;
 
-int					init_data(t_data *data, int argc, char **argv);
-t_philo				*init_philos(t_data *data);
-int					start_simulation(t_philo *philos);
-void				*philo_routine(void *arg);
-void				check_death(t_philo *philos);
 int					print_error(char *msg);
+long long			ft_atoll(const char *str);
 long long			get_time(void);
 void				print_action(t_philo *philo, char *action);
 void				free_all(t_philo *philos);
-long long			ft_atoll(const char *str);
 void				sleep_for(long long duration);
+
+int					init_data(t_data *data, int argc, char **argv);
+int					set_data_values(t_data *data, int argc, char **argv);
+int					initialize_mutexes(t_data *data);
+t_philo				*init_philos(t_data *data);
+int					start_simulation(t_philo *philos);
+int					create_threads(t_philo *philos);
+void				join_threads(t_philo *philos);
+void				*philo_routine(void *arg);
+void				run_philo_routine(t_philo *philo);
+void				take_forks(t_philo *philo, int left_fork, int right_fork);
+void				put_down_forks(t_philo *philo, int left_fork,
+						int right_fork);
+void				perform_eating(t_philo *philo, t_data *data);
+void				perform_sleeping(t_philo *philo, t_data *data);
+void				check_death(t_philo *philos);
+int					check_each_philo(t_philo *philos);
+void				check_all_ate(t_philo *philos);
 
 #endif
