@@ -6,7 +6,7 @@
 #    By: ootsuboyoshiyuki <ootsuboyoshiyuki@stud    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/14 15:06:08 by ootsuboyosh       #+#    #+#              #
-#    Updated: 2024/05/26 18:18:26 by ootsuboyosh      ###   ########.fr        #
+#    Updated: 2024/05/27 15:46:13 by ootsuboyosh      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,7 @@ NAME = philo
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
+DEBUG_FLAGS = -fsanitize=address,undefined -g
 
 SRCS = srcs/main.c \
        srcs/philo.c \
@@ -51,5 +52,8 @@ test: $(NAME)
 
 norm:
 	norminette srcs includes
+
+debug: CFLAGS += $(DEBUG_FLAGS)
+debug: fclean $(NAME)
 	
-.PHONY: all clean fclean re test norm
+.PHONY: all clean fclean re test norm debug
