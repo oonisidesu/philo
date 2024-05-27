@@ -6,7 +6,7 @@
 /*   By: ootsuboyoshiyuki <ootsuboyoshiyuki@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 14:36:13 by ootsuboyosh       #+#    #+#             */
-/*   Updated: 2024/05/26 16:34:44 by ootsuboyosh      ###   ########.fr       */
+/*   Updated: 2024/05/27 17:33:47 by ootsuboyosh      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@
 typedef struct s_data
 {
 	int				num_philos;
-	long long		time_to_die;
-	long long		time_to_eat;
-	long long		time_to_sleep;
+	long			time_to_die;
+	long			time_to_eat;
+	long			time_to_sleep;
 	int				num_must_eat;
 	int				all_ate;
 	int				dead;
@@ -32,26 +32,27 @@ typedef struct s_data
 	pthread_mutex_t	print_mutex;
 	pthread_mutex_t	meal_mutex;
 	pthread_mutex_t	dead_mutex;
-	long long		start_time;
+	long			start_time;
 }					t_data;
 
 typedef struct s_philo
 {
 	int				id;
-	long long		last_meal;
+	long			last_meal;
 	int				meals_eaten;
 	pthread_t		thread;
 	t_data			*data;
 }					t_philo;
 
 int					print_error(char *msg);
-long long			ft_atoll(const char *str);
-long long			get_time(void);
+long				ft_atoll(const char *str);
+long				get_time(void);
 void				print_action(t_philo *philo, char *action);
 void				free_all(t_philo *philos);
-void				sleep_for(long long duration);
+void				sleep_for(long duration);
 
 int					init_data(t_data *data, int argc, char **argv);
+int					check_data_values(int argc, char **argv);
 int					set_data_values(t_data *data, int argc, char **argv);
 int					initialize_mutexes(t_data *data);
 t_philo				*init_philos(t_data *data);

@@ -6,7 +6,7 @@
 /*   By: ootsuboyoshiyuki <ootsuboyoshiyuki@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 14:36:13 by ootsuboyosh       #+#    #+#             */
-/*   Updated: 2024/05/26 16:52:04 by ootsuboyosh      ###   ########.fr       */
+/*   Updated: 2024/05/27 17:32:32 by ootsuboyosh      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void	check_death(t_philo *philos)
 
 int	check_each_philo(t_philo *philos)
 {
-	int			i;
-	long long	current_time;
+	int		i;
+	long	current_time;
 
 	i = 0;
 	while (i < philos->data->num_philos && !philos->data->dead)

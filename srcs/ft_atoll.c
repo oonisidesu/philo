@@ -6,16 +6,16 @@
 /*   By: ootsuboyoshiyuki <ootsuboyoshiyuki@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 14:36:13 by ootsuboyosh       #+#    #+#             */
-/*   Updated: 2024/05/26 15:43:24 by ootsuboyosh      ###   ########.fr       */
+/*   Updated: 2024/05/27 17:39:40 by ootsuboyosh      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-long long	ft_atoll(const char *str)
+long	ft_atoll(const char *str)
 {
-	long long	res;
-	int			sign;
+	long	res;
+	int		sign;
 
 	res = 0;
 	sign = 1;
