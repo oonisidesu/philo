@@ -6,11 +6,31 @@
 /*   By: ootsuboyoshiyuki <ootsuboyoshiyuki@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 14:36:00 by ootsuboyosh       #+#    #+#             */
-/*   Updated: 2024/05/26 15:23:19 by ootsuboyosh      ###   ########.fr       */
+/*   Updated: 2024/05/27 17:34:38 by ootsuboyosh      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+#include <limits.h>
+
+int	check_data_values(int argc, char **argv)
+{
+	int		i;
+	long	value;
+
+	i = 1;
+	while (i < argc)
+	{
+		value = ft_atoll(argv[i]);
+		if (value <= 0 || value > INT_MAX)
+		{
+			print_error("Argument value out of range");
+			return (1);
+		}
+		i++;
+	}
+	return (0);
+}
 
 int	set_data_values(t_data *data, int argc, char **argv)
 {

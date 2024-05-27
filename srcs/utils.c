@@ -6,7 +6,7 @@
 /*   By: ootsuboyoshiyuki <ootsuboyoshiyuki@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 14:36:13 by ootsuboyosh       #+#    #+#             */
-/*   Updated: 2024/05/26 16:33:10 by ootsuboyosh      ###   ########.fr       */
+/*   Updated: 2024/05/27 17:34:56 by ootsuboyosh      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ int	print_error(char *msg)
 	return (1);
 }
 
-long long	get_time(void)
+long	get_time(void)
 {
 	struct timeval	tv;
-	long long		time_in_ms;
+	long			time_in_ms;
 
 	gettimeofday(&tv, NULL);
 	time_in_ms = (tv.tv_sec * 1000) + (tv.tv_usec / 1000);
@@ -32,7 +32,7 @@ void	print_action(t_philo *philo, char *action)
 {
 	pthread_mutex_lock(&philo->data->print_mutex);
 	if (!philo->data->dead)
-		printf("%lld %d %s\n", get_time() - philo->data->start_time, philo->id,
+		printf("%ld %d %s\n", get_time() - philo->data->start_time, philo->id,
 			action);
 	pthread_mutex_unlock(&philo->data->print_mutex);
 }
@@ -54,10 +54,10 @@ void	free_all(t_philo *philos)
 	free(philos);
 }
 
-void	sleep_for(long long duration)
+void	sleep_for(long duration)
 {
-	long long	start_time;
-	long long	current_time;
+	long	start_time;
+	long	current_time;
 
 	start_time = get_time();
 	current_time = start_time;

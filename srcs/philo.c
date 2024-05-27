@@ -6,7 +6,7 @@
 /*   By: ootsuboyoshiyuki <ootsuboyoshiyuki@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 14:36:00 by ootsuboyosh       #+#    #+#             */
-/*   Updated: 2024/05/26 16:21:58 by ootsuboyosh      ###   ########.fr       */
+/*   Updated: 2024/05/27 17:34:40 by ootsuboyosh      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 int	init_data(t_data *data, int argc, char **argv)
 {
+	if (check_data_values(argc, argv))
+		return (1);
 	if (set_data_values(data, argc, argv))
 		return (1);
 	if (initialize_mutexes(data))
