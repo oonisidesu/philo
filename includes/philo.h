@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ootsuboyoshiyuki <ootsuboyoshiyuki@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/14 15:06:52 by ootsuboyosh       #+#    #+#             */
-/*   Updated: 2024/05/15 14:47:15 by ootsuboyosh      ###   ########.fr       */
+/*   Created: 2024/05/25 14:36:13 by ootsuboyosh       #+#    #+#             */
+/*   Updated: 2024/05/26 16:34:44 by ootsuboyosh      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,35 +14,59 @@
 # define PHILO_H
 
 # include <pthread.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <sys/time.h>
+# include <unistd.h>
 
-typedef struct s_philosopher
+typedef struct s_data
+{
+	int				num_philos;
+	long long		time_to_die;
+	long long		time_to_eat;
+	long long		time_to_sleep;
+	int				num_must_eat;
+	int				all_ate;
+	int				dead;
+	pthread_mutex_t	*forks;
+	pthread_mutex_t	print_mutex;
+	pthread_mutex_t	meal_mutex;
+	pthread_mutex_t	dead_mutex;
+	long long		start_time;
+}					t_data;
+
+typedef struct s_philo
 {
 	int				id;
-	pthread_t		thread;
-	pthread_mutex_t	*left_fork;
-	pthread_mutex_t	*right_fork;
-	long			last_meal_time;
+	long long		last_meal;
 	int				meals_eaten;
-	struct s_table	*table;
-}					t_philosopher;
+	pthread_t		thread;
+	t_data			*data;
+}					t_philo;
 
-typedef struct s_table
-{
-	int				number_of_philosophers;
-	int				time_to_die;
-	int				time_to_eat;
-	int				time_to_sleep;
-	int				nm_of_t_each_philo_must_eat;
-	pthread_mutex_t	*forks;
-	t_philosopher	*philosophers;
-}					t_table;
+int					print_error(char *msg);
+long long			ft_atoll(const char *str);
+long long			get_time(void);
+void				print_action(t_philo *philo, char *action);
+void				free_all(t_philo *philos);
+void				sleep_for(long long duration);
 
-long				get_current_time_ms(void);
-void				think(t_philosopher *philosopher);
-void				eat(t_philosopher *philosopher, t_table *table);
-void				sleep_philosopher(t_philosopher *philosopher,
-						t_table *table);
-void				*philosopher_thread(void *arg);
-int					ft_atoi(const char *str);
+int					init_data(t_data *data, int argc, char **argv);
+int					set_data_values(t_data *data, int argc, char **argv);
+int					initialize_mutexes(t_data *data);
+t_philo				*init_philos(t_data *data);
+int					start_simulation(t_philo *philos);
+int					create_threads(t_philo *philos);
+void				join_threads(t_philo *philos);
+void				*philo_routine(void *arg);
+void				run_philo_routine(t_philo *philo);
+void				take_forks(t_philo *philo, int left_fork, int right_fork);
+void				put_down_forks(t_philo *philo, int left_fork,
+						int right_fork);
+void				perform_eating(t_philo *philo, t_data *data);
+void				perform_sleeping(t_philo *philo, t_data *data);
+void				check_death(t_philo *philos);
+int					check_each_philo(t_philo *philos);
+void				check_all_ate(t_philo *philos);
 
 #endif

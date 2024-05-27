@@ -6,7 +6,7 @@
 #    By: ootsuboyoshiyuki <ootsuboyoshiyuki@stud    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/14 15:06:08 by ootsuboyosh       #+#    #+#              #
-#    Updated: 2024/05/15 14:41:57 by ootsuboyosh      ###   ########.fr        #
+#    Updated: 2024/05/27 15:46:13 by ootsuboyosh      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,8 +14,16 @@ NAME = philo
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
+DEBUG_FLAGS = -fsanitize=address,undefined -g
 
-SRCS = srcs/main.c srcs/philosopher.c srcs/utils.c srcs/ft_atoi.c
+SRCS = srcs/main.c \
+       srcs/philo.c \
+       srcs/philo_utils.c \
+       srcs/philo_routine.c \
+	   srcs/philo_actions.c \
+       srcs/utils.c \
+       srcs/death.c \
+	   srcs/ft_atoll.c
 OBJS_DIR = obj
 OBJS = $(SRCS:srcs/%.c=$(OBJS_DIR)/%.o)
 
@@ -38,7 +46,14 @@ fclean: clean
 
 re: fclean all
 
-test: 
-	cd test/unit/build && cmake ../ && make && ctest -R . --verbose
+test: $(NAME)
+	chmod +x test/integration/test_philo.sh
+	./test/integration/test_philo.sh
 
-.PHONY: all clean fclean re test
+norm:
+	norminette srcs includes
+
+debug: CFLAGS += $(DEBUG_FLAGS)
+debug: fclean $(NAME)
+	
+.PHONY: all clean fclean re test norm debug
