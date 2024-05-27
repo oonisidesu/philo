@@ -6,7 +6,7 @@
 /*   By: ootsuboyoshiyuki <ootsuboyoshiyuki@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 14:36:13 by ootsuboyosh       #+#    #+#             */
-/*   Updated: 2024/05/27 17:32:32 by ootsuboyosh      ###   ########.fr       */
+/*   Updated: 2024/05/27 17:39:40 by ootsuboyosh      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 long	ft_atoll(const char *str)
 {
 	long	res;
-	int			sign;
+	int		sign;
 
 	res = 0;
 	sign = 1;
