@@ -6,7 +6,7 @@
 /*   By: ootsuboyoshiyuki <ootsuboyoshiyuki@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 14:36:13 by ootsuboyosh       #+#    #+#             */
-/*   Updated: 2024/06/24 14:09:53 by ootsuboyosh      ###   ########.fr       */
+/*   Updated: 2024/06/24 15:20:25 by ootsuboyosh      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ long	ft_atoll(const char *str)
 			break ;
 		res = res * 10 + (*str - '0');
 		if (res < INT_MIN || res > INT_MAX)
-			return (INT_MAX);
+			return (INT_MAX + (long)1);
 		str++;
 	}
 	return (res * sign);
