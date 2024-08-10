@@ -6,7 +6,7 @@
 /*   By: ootsuboyoshiyuki <ootsuboyoshiyuki@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 14:36:13 by ootsuboyosh       #+#    #+#             */
-/*   Updated: 2024/06/24 14:24:01 by ootsuboyosh      ###   ########.fr       */
+/*   Updated: 2024/08/10 15:39:32 by ootsuboyosh      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,11 +62,11 @@ int					create_threads(t_philo *philos);
 void				join_threads(t_philo *philos);
 void				*philo_routine(void *arg);
 void				run_philo_routine(t_philo *philo);
-void				take_forks(t_philo *philo, int left_fork, int right_fork);
-void				put_down_forks(t_philo *philo, int left_fork,
+int					take_forks(t_philo *philo, int left_fork, int right_fork);
+int					put_down_forks(t_philo *philo, int left_fork,
 						int right_fork);
-void				perform_eating(t_philo *philo, t_data *data);
-void				perform_sleeping(t_philo *philo, t_data *data);
+int					perform_eating(t_philo *philo, t_data *data);
+int					perform_sleeping(t_philo *philo, t_data *data);
 void				check_death(t_philo *philos);
 int					check_each_philo(t_philo *philos);
 void				check_all_ate(t_philo *philos);
