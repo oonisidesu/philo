@@ -6,7 +6,7 @@
 /*   By: ootsuboyoshiyuki <ootsuboyoshiyuki@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 14:36:13 by ootsuboyosh       #+#    #+#             */
-/*   Updated: 2024/08/10 15:39:32 by ootsuboyosh      ###   ########.fr       */
+/*   Updated: 2024/08/15 15:46:42 by ootsuboyosh      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ t_philo				*init_philos(t_data *data);
 int					start_simulation(t_philo *philos);
 int					create_threads(t_philo *philos);
 void				join_threads(t_philo *philos);
+int					attempt_to_take_forks(t_philo *philo, int left_fork,
+						int right_fork);
 void				*philo_routine(void *arg);
 void				run_philo_routine(t_philo *philo);
 int					take_forks(t_philo *philo, int left_fork, int right_fork);

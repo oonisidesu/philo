@@ -6,7 +6,7 @@
 #    By: ootsuboyoshiyuki <ootsuboyoshiyuki@stud    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/14 15:06:08 by ootsuboyosh       #+#    #+#              #
-#    Updated: 2024/05/27 15:46:13 by ootsuboyosh      ###   ########.fr        #
+#    Updated: 2024/08/15 15:47:31 by ootsuboyosh      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ SRCS = srcs/main.c \
        srcs/philo_utils.c \
        srcs/philo_routine.c \
 	   srcs/philo_actions.c \
+	   srcs/philo_fork.c \
        srcs/utils.c \
        srcs/death.c \
 	   srcs/ft_atoll.c
