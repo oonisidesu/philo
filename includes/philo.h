@@ -6,7 +6,7 @@
 /*   By: ootsuboyoshiyuki <ootsuboyoshiyuki@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 14:36:13 by ootsuboyosh       #+#    #+#             */
-/*   Updated: 2024/08/15 15:46:42 by ootsuboyosh      ###   ########.fr       */
+/*   Updated: 2024/08/26 19:40:14 by ootsuboyosh      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ long				ft_atoll(const char *str);
 long				get_time(void);
 void				print_action(t_philo *philo, char *action);
 void				free_all(t_philo *philos);
-void				sleep_for(long duration);
+void				sleep_for(long duration, t_data *data);
 
 int					init_data(t_data *data, int argc, char **argv);
 int					check_data_values(int argc, char **argv);

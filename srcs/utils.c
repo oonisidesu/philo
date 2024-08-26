@@ -6,7 +6,7 @@
 /*   By: ootsuboyoshiyuki <ootsuboyoshiyuki@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 14:36:13 by ootsuboyosh       #+#    #+#             */
-/*   Updated: 2024/05/27 17:34:56 by ootsuboyosh      ###   ########.fr       */
+/*   Updated: 2024/08/26 19:41:05 by ootsuboyosh      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	free_all(t_philo *philos)
 	free(philos);
 }
 
-void	sleep_for(long duration)
+void	sleep_for(long duration, t_data *data)
 {
 	long	start_time;
 	long	current_time;
@@ -63,6 +63,8 @@ void	sleep_for(long duration)
 	current_time = start_time;
 	while (current_time - start_time < duration)
 	{
+		if (data->dead)
+			return ;
 		usleep(100);
 		current_time = get_time();
 	}
