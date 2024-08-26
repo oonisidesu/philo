@@ -6,7 +6,7 @@
 /*   By: ootsuboyoshiyuki <ootsuboyoshiyuki@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 14:36:00 by ootsuboyosh       #+#    #+#             */
-/*   Updated: 2024/08/10 15:44:09 by ootsuboyosh      ###   ########.fr       */
+/*   Updated: 2024/08/26 19:40:27 by ootsuboyosh      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	perform_eating(t_philo *philo, t_data *data)
 	philo->last_meal = get_time();
 	philo->meals_eaten++;
 	pthread_mutex_unlock(&data->meal_mutex);
-	sleep_for(data->time_to_eat);
+	sleep_for(data->time_to_eat, data);
 	return (0);
 }
 
@@ -42,6 +42,6 @@ int	perform_sleeping(t_philo *philo, t_data *data)
 	if (philo->data->dead)
 		return (1);
 	print_action(philo, "is sleeping");
-	sleep_for(data->time_to_sleep);
+	sleep_for(data->time_to_sleep, data);
 	return (0);
 }
