@@ -6,7 +6,7 @@
 /*   By: ootsuboyoshiyuki <ootsuboyoshiyuki@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 15:44:44 by ootsuboyosh       #+#    #+#             */
-/*   Updated: 2024/08/15 15:45:11 by ootsuboyosh      ###   ########.fr       */
+/*   Updated: 2024/08/27 15:58:46 by ootsuboyosh      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,12 @@
 
 int	attempt_to_take_forks(t_philo *philo, int left_fork, int right_fork)
 {
+	long	time;
+	long	delay;
+
+	time = get_time();
+	delay = time % 100;
+	usleep(delay + 50);
 	if (philo->id % 2 == 0)
 	{
 		usleep(100);
