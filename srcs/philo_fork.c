@@ -6,7 +6,7 @@
 /*   By: ootsuboyoshiyuki <ootsuboyoshiyuki@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 15:44:44 by ootsuboyosh       #+#    #+#             */
-/*   Updated: 2024/08/27 15:58:46 by ootsuboyosh      ###   ########.fr       */
+/*   Updated: 2024/08/27 19:50:29 by ootsuboyosh      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,14 @@ int	handle_single_philo(t_philo *philo, t_data *data, int first_fork)
 {
 	if (data->num_philos == 1)
 	{
-		usleep(data->time_to_die * 1000);
-		print_action(philo, "died");
+		usleep(data->time_to_die * 2000);
+		pthread_mutex_lock(&data->dead_mutex);
+		if (!data->dead)
+		{
+			print_action(philo, "died");
+			data->dead = 1;
+		}
+		pthread_mutex_unlock(&data->dead_mutex);
 		pthread_mutex_unlock(&data->forks[first_fork]);
 		return (1);
 	}
