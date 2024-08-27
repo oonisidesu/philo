@@ -6,7 +6,7 @@
 /*   By: ootsuboyoshiyuki <ootsuboyoshiyuki@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 14:36:13 by ootsuboyosh       #+#    #+#             */
-/*   Updated: 2024/08/10 16:16:19 by ootsuboyosh      ###   ########.fr       */
+/*   Updated: 2024/08/27 19:44:45 by ootsuboyosh      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,12 @@ int	check_each_philo(t_philo *philos)
 		current_time = get_time();
 		if (current_time - philos[i].last_meal > philos->data->time_to_die)
 		{
-			print_action(&philos[i], "died");
 			pthread_mutex_lock(&philos->data->dead_mutex);
-			philos->data->dead = 1;
+			if (!philos->data->dead)
+			{
+				print_action(&philos[i], "died");
+				philos->data->dead = 1;
+			}
 			pthread_mutex_unlock(&philos->data->dead_mutex);
 			pthread_mutex_unlock(&philos->data->meal_mutex);
 			return (1);
